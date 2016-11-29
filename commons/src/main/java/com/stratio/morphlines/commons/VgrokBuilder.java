@@ -31,11 +31,11 @@ import org.kitesdk.morphline.shaded.com.google.code.regexp.Matcher;
 
 import java.util.*;
 /**
- * The Grok command uses regular expression pattern matching to extract structured fields from
+ * The Vgrok command uses regular expression pattern matching to extract structured fields from
  * unstructured log data.
  * <p>
- * It is perfect for syslog logs, apache and other webserver logs, mysql logs, and in general, any
- * log format that is generally written for humans and not computer consumption.
+ * If the pattern matching fails, the field which causes the error is added to a list. At the end of the command,
+ * all error fields are pritned to a new field in the output record (vgrok_error_fields).
  */
 public final class VgrokBuilder implements CommandBuilder {
 
