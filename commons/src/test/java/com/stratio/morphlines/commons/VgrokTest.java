@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
 public class VgrokTest extends BaseTest{
@@ -86,6 +87,7 @@ public class VgrokTest extends BaseTest{
 
         assertEquals(records.size(),1);
         Record result = records.get(0);
+        assertEquals(1, result.get("vgrok_error_fields").get(0).toString().split(",").length);
         checkFieldValue(result, "vgrok_error_fields", "[mandatoryHash]");
     }
 
@@ -110,7 +112,10 @@ public class VgrokTest extends BaseTest{
 
         assertEquals(records.size(),1);
         Record result = records.get(0);
-        checkFieldValue(result, "vgrok_error_fields", "[amount, mandatoryHash, date]");
+        assertEquals(3, result.get("vgrok_error_fields").get(0).toString().split(",").length);
+        assertTrue(result.get("vgrok_error_fields").get(0).toString().contains("mandatoryHash"));
+        assertTrue(result.get("vgrok_error_fields").get(0).toString().contains("date"));
+        assertTrue(result.get("vgrok_error_fields").get(0).toString().contains("amount"));
     }
 
 }
