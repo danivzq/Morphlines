@@ -37,19 +37,10 @@ import com.google.common.collect.Lists;
 import com.typesafe.config.Config;
 
 @Ignore
-public class HeadersToBodyTest {
+public class HeadersToBodyTest extends BaseTest{
 
     @Before
     public void setUp() {
-    }
-
-    protected Config parse(String file, Config... overrides) throws IOException {
-        File tmpFile = File.createTempFile("morphlines_", ".conf");
-        IOUtils.copy(getClass().getResourceAsStream(file), new FileOutputStream(tmpFile));
-        Config config = new org.kitesdk.morphline.base.Compiler().parse(tmpFile, overrides);
-        config = config.getConfigList("morphlines").get(0);
-        Preconditions.checkNotNull(config);
-        return config;
     }
 
     private Record record(String...args) {

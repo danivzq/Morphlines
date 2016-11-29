@@ -52,7 +52,7 @@ import com.typesafe.config.ConfigObject;
 import com.typesafe.config.ConfigValue;
 
 @RunWith(JUnit4.class)
-public class ReadXmlTest {
+public class ReadXmlTest extends BaseTest{
 
     private static final String XML_FILE = "/readxml/test.xml";
     private static final String MORPH_CONF_FILE = "/readxml/readXml.conf";
@@ -175,15 +175,6 @@ public class ReadXmlTest {
         command.process(record);
 
         Record result = collectorChild.getRecords().get(0);
-    }
-
-    protected Config parse(String file, Config... overrides) throws IOException {
-        File tmpFile = File.createTempFile("morphlines_", ".conf");
-        IOUtils.copy(getClass().getResourceAsStream(file), new FileOutputStream(tmpFile));
-        Config config = new Compiler().parse(tmpFile, overrides);
-        config = config.getConfigList("morphlines").get(0);
-        Preconditions.checkNotNull(config);
-        return config;
     }
 
 }

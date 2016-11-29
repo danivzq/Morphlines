@@ -36,7 +36,7 @@ import com.google.common.base.Preconditions;
 import com.typesafe.config.Config;
 
 @RunWith(JUnit4.class)
-public class RenameTest {
+public class RenameTest extends BaseTest{
     
     private static final String MORPH_CONF_FILE = "/rename/rename.conf";
     
@@ -67,12 +67,4 @@ public class RenameTest {
         assertEquals(result.get("newfield1").get(0), "content1");
     }
 
-    protected Config parse(String file, Config... overrides) throws IOException {
-        File tmpFile = File.createTempFile("morphlines_", ".conf");
-        IOUtils.copy(getClass().getResourceAsStream(file), new FileOutputStream(tmpFile));
-        Config config = new Compiler().parse(tmpFile, overrides);
-        config = config.getConfigList("morphlines").get(0);
-        Preconditions.checkNotNull(config);
-        return config;
-    }
 }

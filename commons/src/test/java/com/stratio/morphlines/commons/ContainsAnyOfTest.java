@@ -32,18 +32,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class ContainsAnyOfTest {
+public class ContainsAnyOfTest extends BaseTest {
 
     private static final String ANY_FILE = "/readxml/test.xml";
-
-    protected Config parse(String file, Config... overrides) throws IOException {
-        File tmpFile = File.createTempFile("morphlines_", ".conf");
-        IOUtils.copy(getClass().getResourceAsStream(file), new FileOutputStream(tmpFile));
-        Config config = new org.kitesdk.morphline.base.Compiler().parse(tmpFile, overrides);
-        config = config.getConfigList("morphlines").get(0);
-        Preconditions.checkNotNull(config);
-        return config;
-    }
 
     @Test
     public void testBasicMultiply() throws IOException {

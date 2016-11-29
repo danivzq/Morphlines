@@ -34,7 +34,7 @@ import org.kitesdk.morphline.base.Compiler;
 import com.google.common.base.Preconditions;
 import com.typesafe.config.Config;
 
-public class RelationalFilterTest {
+public class RelationalFilterTest extends BaseTest{
     
     private static final String MORPH_CONF_GREATER = "/relational/relationalGreater.conf";
     private static final String MORPH_CONF_GREATEREQUAL = "/relational/relationalGreaterEqual.conf";
@@ -112,15 +112,6 @@ public class RelationalFilterTest {
         processRecords(command, records);
         List<Record> records = collectorChild.getRecords();
         assertThat(records.size()).isEqualTo(5);
-    }
-    
-    protected Config parse(String file, Config... overrides) throws IOException {
-        File tmpFile = File.createTempFile("morphlines_", ".conf");
-        IOUtils.copy(getClass().getResourceAsStream(file), new FileOutputStream(tmpFile));
-        Config config = new Compiler().parse(tmpFile, overrides);
-        config = config.getConfigList("morphlines").get(0);
-        Preconditions.checkNotNull(config);
-        return config;
     }
     
     private void processRecords(Command command, List<Record> records){
