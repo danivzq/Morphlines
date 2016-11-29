@@ -36,7 +36,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<kite.version>0.17.0</kite.version>
+		<kite.version>1.1.0</kite.version>
 		<junit.version>4.11</junit.version>
 		<fest.version>1.4</fest.version>
 		<commons.io.version>2.1</commons.io.version>
